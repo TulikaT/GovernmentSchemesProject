@@ -10,8 +10,6 @@ nav {
   z-index: 999;
   font-family: 'Vidaloka', serif;
 }
-
-/* Desktop navigation - visible by default */
 nav ul {
   display: flex;
   gap: 2rem;
@@ -65,7 +63,6 @@ nav ul li a:focus-visible {
   transition: all 0.4s ease;
 }
 
-/* Hamburger animation when active */
 .hamburger.active .icon:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
@@ -76,17 +73,16 @@ nav ul li a:focus-visible {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Mobile Responsive */
 @media screen and (max-width: 800px) {
   nav ul {
-    display: none; /* Hide navigation by default on mobile */
+    display: none;
   }
   
   nav ul.toggle {
     display: flex !important;
     flex-direction: column;
     position: absolute;
-    top: 100%; /* Position below navbar */
+    top: 100%; 
     right: 1rem;
     left: 1rem;
     background: #fffbe5;
