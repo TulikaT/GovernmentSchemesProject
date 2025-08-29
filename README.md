@@ -1,12 +1,69 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+GovSchemes — Government Schemes Dashboard
 
-Currently, two official plugins are available:
+A responsive React dashboard that combines curated scheme summaries with live, state-wise public datasets from India’s Open Government Data platform. Explore programs by Sector, Ministry, Launch Year, and State with a clean, card-based UI and fast filtering.
+Highlights
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+    Unified catalog + live data: blends curated scheme metadata with OGD India APIs for state-wise insights.
 
-## Expanding the ESLint configuration
+Smart State filtering: auto-detects the correct “state” field per dataset and applies server filters with a robust client fallback for inconsistent schemas.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Modern UI: responsive grid, accessible colors/typography, informative badges, hover states, and soft dividers.
+
+Zero-config deploys: push to GitHub and ship with Vercel CI/CD in minutes.
+Demo
+
+    Local: npm run dev or npm start (depending on Vite/CRA)
+
+    Production: connect GitHub repo to Vercel; each push deploys automatically.
+
+Tech Stack
+
+    React + modern CSS (flex/grid)
+
+    Axios for API calls
+
+    Vite or CRA (both supported; ensure correct build/output settings)
+
+Vercel for hosting and CI/CD
+Project Structure
+
+    src/services/ogd.js — tiny client for OGD India APIs (handles filters[field]=value).
+
+src/data/unify.js — normalizers to map raw API/custom data into a unified record shape.
+
+src/data/stateField.js — detects state field in each dataset and provides robust matching helpers.
+
+    src/components/GovSchemesDashboard.jsx — main dashboard with filters and card grid.
+
+    src/pages/About.jsx, src/pages/Contact.jsx — static pages with matching UI.
+
+Data Sources
+
+    Open Government Data (OGD) Platform India — API access and datasets used here follow official API patterns and licensing guidance.
+
+Scheme context: general references and lists used for curation and consistency checks. Always validate details at official ministry portals.
+Getting Started
+
+Prerequisites:
+
+    Node 18+ and npm
+
+    A browser (Chrome/Edge/Firefox)
+
+Install & run:
+
+text
+npm install
+# Vite
+npm run dev
+# CRA
+npm start
+
+Build:
+
+text
+# Vite
+npm run build  # outputs to dist
+# CRA
+npm run build  # outputs to build
