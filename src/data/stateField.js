@@ -1,5 +1,5 @@
 export function detectStateField(record) {
-  if (!record) return null; // simple guard [2]
+  if (!record) return null; 
   const candidates = [
     'state',
     'state_ut',
@@ -9,7 +9,7 @@ export function detectStateField(record) {
     'States/UTs',
     'statename',
     'district_state',
-  ]; // common field ids seen in OGD datasets and wrappers [3]
+  ]; 
   const keys = Object.keys(record);
   for (const key of keys) {
     const k = key.trim();
@@ -17,13 +17,13 @@ export function detectStateField(record) {
     const low = k.toLowerCase();
     if (['state', 'state_ut', 'state/ut', 'states/uts'].includes(low)) return key;
   }
-  return null; // fallback if unknown [3]
-} // [3]
+  return null; 
+} 
 
-export const norm = (s) => (s || '').toString().trim().toLowerCase(); // normalize [2]
+export const norm = (s) => (s || '').toString().trim().toLowerCase(); 
 
 export function matchesState(record, desired) {
-  if (!desired) return true; // no filter [2]
+  if (!desired) return true;
   const desiredN = norm(desired);
   const vals = [
     record.state,
@@ -33,6 +33,6 @@ export function matchesState(record, desired) {
     record['state / ut'],
     record['States/UTs'],
     record.statename,
-  ]; // aliases to check [3]
-  return vals.some(v => norm(v) === desiredN); // robust match [3]
-} // [3]
+  ]; 
+  return vals.some(v => norm(v) === desiredN); 
+} 
