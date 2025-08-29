@@ -1,0 +1,94 @@
+.footer {
+  width: 100%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 4vw 0.9rem 4vw;
+  min-height: 66px;
+  border-top: none;
+  position: relative;
+  box-sizing: border-box;
+  font-family: 'Inter', serif;
+  font-size: 1.18rem;
+  letter-spacing: 0.01em;
+}
+
+.footer-copy {
+  color: #181818;
+  font-size: 1.19rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.footer-site {
+  font-weight: 700;
+  font-family: 'Inter', serif;
+  color: #222;
+}
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-right: 2vw;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-family: Arial, sans-serif;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.social-icon.facebook {
+  background: #4e6ba6;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.social-icon.x {
+  background: transparent;
+  color: #181818;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 0;
+}
+.social-icon.linkedin {
+  background: #6c97b8;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: bold;
+  font-family: 'Inter', sans-serif;
+}
+
+.footer-socials a {
+  transition: filter 0.16s;
+}
+.footer-socials a:hover, .footer-socials a:focus {
+  filter: brightness(1.13);
+  box-shadow: 0 1.5px 8px #dacbfa22;
+}
+
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.1rem 2vw 1.2rem 2vw;
+    min-height: 88px;
+    font-size: 1.05rem;
+  }
+  .footer-socials {
+    gap: 1.4rem;
+    margin: 0;
+    margin-top: 0.55rem;
+  }
+}

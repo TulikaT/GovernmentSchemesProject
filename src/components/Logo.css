@@ -1,0 +1,16 @@
+#logo{
+ font-size: 1.3rem;
+ font-family: "pacifico";
+ cursor: pointer;
+ padding: .5rem;
+ border: 6px double black;
+ border-radius: 8px;
+}
+
+#logo .color{
+    color: #B4EBE6;
+    font-weight: 700;
+    text-shadow: 2px 2px 1px black;
+    
+ font-family: "pacifico";
+}

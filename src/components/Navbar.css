@@ -1,0 +1,124 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  box-shadow: 0 1px 7px rgba(235, 230, 140, 0.28);
+  z-index: 999;
+  font-family: 'Vidaloka', serif;
+}
+
+/* Desktop navigation - visible by default */
+nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li a {
+  color: #3b3b52;
+  font-weight: 600;
+  font-size: 1.15rem;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.25s ease;
+}
+
+nav ul li a:hover {
+  color: #fff;
+  background: #2b86ee;
+  text-shadow: 0 0 10px #f7ba36cc;
+}
+
+nav ul li a.active {
+  color: #1a5490;
+  background: #B4EBE6;
+  font-weight: 600;
+}
+
+nav ul li a:focus-visible {
+  outline: 2px dashed #f7a32a;
+  outline-offset: 4px;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.5rem;
+}
+
+.hamburger .icon {
+  width: 25px;
+  height: 3.5px;
+  background-color: #2e2e2e;
+  margin: 3px 0;
+  border-radius: 3px;
+  transition: all 0.4s ease;
+}
+
+/* Hamburger animation when active */
+.hamburger.active .icon:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active .icon:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active .icon:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 800px) {
+  nav ul {
+    display: none; /* Hide navigation by default on mobile */
+  }
+  
+  nav ul.toggle {
+    display: flex !important;
+    flex-direction: column;
+    position: absolute;
+    top: 100%; /* Position below navbar */
+    right: 1rem;
+    left: 1rem;
+    background: #fffbe5;
+    box-shadow: 0 7px 18px rgba(233, 222, 36, 0.3);
+    border-radius: 10px;
+    padding: 1rem 1.4rem;
+    z-index: 998;
+    animation: slideDown 0.3s ease;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  nav ul.toggle li {
+    margin: 0.5rem 0;
+  }
+
+  nav ul.toggle li a {
+    display: block;
+    padding: 0.8rem 1rem;
+    text-align: center;
+  }
+  
+  .hamburger {
+    display: flex;
+  }
+}
