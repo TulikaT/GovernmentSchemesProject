@@ -75,8 +75,6 @@
   box-shadow: 0 1.5px 8px #dacbfa22;
 }
 
-
-/* Responsive styles */
 @media (max-width: 600px) {
   .footer {
     flex-direction: column;
