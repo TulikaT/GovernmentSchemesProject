@@ -1,4 +1,3 @@
-/* Base layout (keep your existing) */
 .dash{
   font-family: "Vidaloka", serif;
   background-image: linear-gradient(45deg, #fff4e4, #f0f6ee);
@@ -12,7 +11,6 @@ h1 {
   color: #2b3a67;
 }
 
-/* Filters polish */
 .filters{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -62,7 +60,6 @@ h1 {
   box-shadow: 0 3px 8px rgba(0,0,0,.06);
 }
 
-/* Section card */
 .grid { display: flex; flex-direction: column; gap: 20px; }
 
 .card.full-width {
@@ -81,15 +78,11 @@ h1 {
   color: #233057;
   letter-spacing: 0.2px;
 }
-
-/* Grid of data cards */
 .data-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 18px;
 }
-
-/* Individual data card with gradient edge and hover lift */
 .data-card {
   background: #ffffff;
   border-radius: 14px;
@@ -101,7 +94,6 @@ h1 {
   transition: transform .12s ease, box-shadow .18s ease, border-color .12s ease;
 }
 
-/* subtle top gradient bar */
 .data-card::before{
   content: "";
   position: absolute;
@@ -116,8 +108,6 @@ h1 {
   box-shadow: 0 10px 22px rgba(20,40,80,0.10);
   border-color: #dfe6f5;
 }
-
-/* Typography polish */
 .data-card p {
   margin: 6px 0;
   font-size: 14px;
@@ -125,32 +115,25 @@ h1 {
   line-height: 1.45;
 }
 
-/* Title line stronger */
 .data-card p:first-child strong {
   color:#21345e;
   font-weight: 700;
 }
-
-/* Soft dividers between logical blocks */
 .data-card p + p {
   border-top: 1px dashed rgba(39,49,80,0.08);
   padding-top: 6px;
 }
 
-/* Field label emphasis */
 .data-card strong {
   color:#2a3a6a;
 }
 
-/* Badges row (auto-wrap) */
 .badges {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin: 6px 0 8px 0;
 }
-
-/* Badge styles */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -169,7 +152,6 @@ h1 {
 .badge.state { background:#fff7ef; border-color:#fee1c7; }
 .badge.year { background:#f7f5ff; border-color:#e6e0ff; }
 
-/* Description block with subtle background */
 .desc {
   background: #f9fbff;
   border: 1px dashed #e1e8f7;
@@ -178,13 +160,11 @@ h1 {
   color:#2b3558;
 }
 
-/* Budget highlight */
 .money {
   color:#0b6e4f;
   font-weight: 700;
 }
 
-/* Empty state */
 .no-data {
   color: #7a839a;
   font-style: italic;
