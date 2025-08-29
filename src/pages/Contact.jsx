@@ -12,13 +12,11 @@ function Contact() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    // Demo-only: simulate submit
     try {
       if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
         setStatus({ type: 'error', text: 'Please fill out all fields.' });
         return;
       }
-      // TODO: integrate backend/email service if needed
       await new Promise((r) => setTimeout(r, 600));
       setStatus({ type: 'ok', text: 'Thanks! Message sent successfully.' });
       setForm({ name: '', email: '', message: '' });
@@ -101,7 +99,6 @@ function Contact() {
       <section className="contact-card">
         <h2>Find us</h2>
         <div className="map-box">
-          {/* Replace src with an actual map embed if needed */}
           <iframe
             title="Map placeholder"
             src="https://www.openstreetmap.org/export/embed.html?bbox=77.0%2C28.4%2C77.4%2C28.8&layer=mapnik"
