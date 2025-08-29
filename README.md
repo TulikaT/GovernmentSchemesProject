@@ -9,6 +9,7 @@ Highlights
 Smart State filtering: auto-detects the correct “state” field per dataset and applies server filters with a robust client fallback for inconsistent schemas.
 
 Modern UI: responsive grid, accessible colors/typography, informative badges, hover states, and soft dividers.
+CanvaDesign: https://www.canva.com/design/DAGxXSEX_cI/TPoOPZUZV4AGuEVAQtLk-A/edit?utm_content=DAGxXSEX_cI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 Zero-config deploys: push to GitHub and ship with Vercel CI/CD in minutes.
 Demo
