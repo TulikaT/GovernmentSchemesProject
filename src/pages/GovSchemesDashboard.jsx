@@ -14,10 +14,10 @@ import {
   SportsAndCulture,
   UrbanDevelopment,
   UtilityAndSanitation,
-} from '../services/customApi'; // your catalog blocks [2]
-import { fetchOGD } from '../services/ogd'; // OGD client [2]
-import { normalizeByEndpoint, normalizeCustomBlock } from '../data/unify'; // normalizers [2]
-import { detectStateField, matchesState, norm } from '../data/stateField'; // state helpers [3]
+} from '../services/customApi'; 
+import { fetchOGD } from '../services/ogd'; 
+import { normalizeByEndpoint, normalizeCustomBlock } from '../data/unify'; 
+import { detectStateField, matchesState, norm } from '../data/stateField'; 
 
 const ENDPOINTS = [
   'a0d62cd1-d239-4b89-a538-6f8730975767',
@@ -33,7 +33,7 @@ const ENDPOINTS = [
   'ad92a45d-c713-4c7d-8289-128eb89f2a81',
   'dfe38d33-f16a-463d-9ac2-2c58c6f07e4e',
   'c6bb798b-8733-4905-b015-147330653aaa',
-]; // resource ids to load [2]
+]; 
 
 const CUSTOM_BLOCKS = {
   'Agriculture, Rural & Environment': AgricultureRuralAndEnvironment,
@@ -49,17 +49,17 @@ const CUSTOM_BLOCKS = {
   'Sports & Culture': SportsAndCulture,
   'Urban Development': UrbanDevelopment,
   'Utility & Sanitation': UtilityAndSanitation,
-}; // sector groupings [2]
+}; 
 
 const allCustomRecords = Object.entries(CUSTOM_BLOCKS)
-  .flatMap(([sector, block]) => normalizeCustomBlock(sector, block).map(r => ({ ...r, sector: r.sector || sector }))); // catalog flattened [2]
+  .flatMap(([sector, block]) => normalizeCustomBlock(sector, block).map(r => ({ ...r, sector: r.sector || sector }))); 
 
 export default function GovSchemesDashboard() {
-  const [filters, setFilters] = useState({ sector: '', ministry: '', year: '', state: '' }); // unified filter state [4]
-  const [apiRecords, setApiRecords] = useState([]); // fetched/normalized rows [2]
-  const [loading, setLoading] = useState(true); // fetch state [2]
+  const [filters, setFilters] = useState({ sector: '', ministry: '', year: '', state: '' }); 
+  const [apiRecords, setApiRecords] = useState([]); 
+  const [loading, setLoading] = useState(true); 
 
-  // Probe-and-filter fetch: detect real state field then apply server filter; always client-fallback too. [1][2][3]
+ 
   useEffect(() => {
     let mounted = true;
     async function run() {
@@ -67,45 +67,38 @@ export default function GovSchemesDashboard() {
       try {
         const arrays = await Promise.all(
           ENDPOINTS.map(async (id) => {
-            // probe for field name
-            // tiny probe to detect the actual state field in this resource
-const sampleRows = await fetchOGD({ endpointId: id, limit: 1 }); // returns an array or []
+            
+const sampleRows = await fetchOGD({ endpointId: id, limit: 1 }); 
 const sample = (Array.isArray(sampleRows) && sampleRows.length > 0) ? sampleRows[0] : null;
-            const stateField = sample ? detectStateField(sample) : null; // detect field id [3]
+            const stateField = sample ? detectStateField(sample) : null; 
 
             let rows;
             if (filters.state && stateField) {
-              // precise server-side filter using detected field
-              rows = await fetchOGD({ endpointId: id, limit: 1000, filters: { [stateField]: filters.state } }); // [1][2]
+              rows = await fetchOGD({ endpointId: id, limit: 1000, filters: { [stateField]: filters.state } });
             } else {
-              // no state or unknown field -> broad fetch
-              rows = await fetchOGD({ endpointId: id, limit: 1000 }); // [2]
+              rows = await fetchOGD({ endpointId: id, limit: 1000 }); 
             }
-
-            // client fallback in all cases for reliability
-            const filtered = filters.state ? rows.filter(r => matchesState(r, filters.state)) : rows; // [3]
-            return filtered.map(normalizeByEndpoint(id)); // normalize [2]
+            const filtered = filters.state ? rows.filter(r => matchesState(r, filters.state)) : rows; 
+            return filtered.map(normalizeByEndpoint(id));
           })
-        ); // parallel per endpoint [2]
-        if (mounted) setApiRecords(arrays.flat()); // combine [2]
-      } catch (e) {
-        if (mounted) setApiRecords([]); // safe default [2]
-        // eslint-disable-next-line no-console
-        console.error('OGD fetch failed', e); // debug helper [2]
+        ); 
+        if (mounted) setApiRecords(arrays.flat());
+        if (mounted) setApiRecords([]); 
+        console.error('OGD fetch failed', e);
       } finally {
-        if (mounted) setLoading(false); // done [2]
+        if (mounted) setLoading(false);
       }
     }
     run();
-    return () => { mounted = false; }; // cleanup [2]
-  }, [filters.state]); // re-run when state changes [4]
+    return () => { mounted = false; }; 
+  }, [filters.state]); 
 
-  const combined = useMemo(() => [...allCustomRecords, ...apiRecords], [apiRecords]); // merge static + api [2]
+  const combined = useMemo(() => [...allCustomRecords, ...apiRecords], [apiRecords]); 
 
-  // options for selects (states built from multiple possible keys) [3]
-  const sectors = Array.from(new Set(combined.map(r => (r.sector || '').toString()).filter(Boolean))).sort(); // [4]
-  const ministries = Array.from(new Set(combined.map(r => (r.ministry || '').toString()).filter(Boolean))).sort(); // [4]
-  const years = Array.from(new Set(combined.map(r => (r.launchYear || '').toString()).filter(Boolean))).sort(); // [4]
+  
+  const sectors = Array.from(new Set(combined.map(r => (r.sector || '').toString()).filter(Boolean))).sort(); 
+  const ministries = Array.from(new Set(combined.map(r => (r.ministry || '').toString()).filter(Boolean))).sort(); 
+  const years = Array.from(new Set(combined.map(r => (r.launchYear || '').toString()).filter(Boolean))).sort(); 
   const states = Array.from(new Set(
     combined.flatMap(r => {
       const vals = [
@@ -118,13 +111,12 @@ const sample = (Array.isArray(sampleRows) && sampleRows.length > 0) ? sampleRows
       ].filter(Boolean);
       return vals.map(v => v.toString().trim());
     })
-  )).sort(); // supports schema variants [3]
-
-  // final multi-filter in-memory [4]
+  )).sort(); 
+ 
   const visible = combined.filter((r) => {
-    if (filters.sector && r.sector !== filters.sector) return false; // sector [4]
-    if (filters.ministry && r.ministry !== filters.ministry) return false; // ministry [4]
-    if (filters.year && r.launchYear !== filters.year) return false; // year [4]
+    if (filters.sector && r.sector !== filters.sector) return false; 
+    if (filters.ministry && r.ministry !== filters.ministry) return false; 
+    if (filters.year && r.launchYear !== filters.year) return false;
     if (filters.state) {
       const stateVal =
         r.state ??
@@ -133,9 +125,9 @@ const sample = (Array.isArray(sampleRows) && sampleRows.length > 0) ? sampleRows
         r.payload?.['State/UT'] ??
         r.payload?.['STATE/UT'] ??
         r.payload?.statename;
-      if (norm(stateVal) !== norm(filters.state)) return false; // robust state check [3]
+      if (norm(stateVal) !== norm(filters.state)) return false; 
     }
-    return true; // keep row [4]
+    return true;
   });
 
   return (
