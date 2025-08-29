@@ -70,10 +70,10 @@
   border: 1px solid #ddede8;
   box-shadow: 0 2px 7px rgba(93, 133, 122, 0.07);
   padding: 1rem;
-  width: 100%;        /* full width inside container */
-  max-width: 350px;   /* optional max */
+  width: 100%;       
+  max-width: 350px; 
   display: flex;
-  flex-direction: column; /* stack icon + value + label */
+  flex-direction: column; 
   align-items: center;
   text-align: center;
   gap: 0.5rem;
@@ -123,7 +123,7 @@
   width: 100%;
   max-width: 350px;
   display: flex;
-  flex-direction: row; /* desktop: icon + text side by side */
+  flex-direction: row; 
   align-items: center;
   text-align: left;
   gap: 1rem;
@@ -139,17 +139,14 @@
   font-size: 2.2rem;
   font-weight: 700;
   color: #4991a6;
-  margin: 0; /* remove offsets completely */
+  margin: 0; 
 }
 
 .stat-label {
   font-size: 1.12rem;
   color: #65818c;
   font-weight: 500;
-  margin: 0; /* remove offsets completely */
-}
-
-/* Small screens */
+  margin: 0;}
 @media (max-width: 600px) {
   .stats-container {
     flex-direction: column;
@@ -160,13 +157,13 @@
   }
 
   .stat-card {
-    flex-direction: column; /* stack icon + text vertically */
+    flex-direction: column;
     align-items: center;
     text-align: center;
   }
 
   .stat-text {
-    align-items: center; /* center value and label under icon */
+    align-items: center; 
   }
 }
 
@@ -180,9 +177,6 @@
 }
 
 
-
-
-/* Medium devices (601px - 1000px) */
 @media (min-width: 601px) and (max-width: 1000px) {
   .stats-container {
     flex-wrap: wrap;
